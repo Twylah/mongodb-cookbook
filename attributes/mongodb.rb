@@ -64,6 +64,11 @@ default[:mongodb][:opidmem]       = 0
 
 default[:mongodb][:replica_set]   = ""
 
+### Useful to speed up a slave/secondary/etc db
+default[:mongodb][:fastsync]      = false
+
+### Enable journaling
+default[:mongodb][:journal]       = false
 
 ### SHARDING
 default[:mongodb][:shard_server]  = false

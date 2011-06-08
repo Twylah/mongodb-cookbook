@@ -70,6 +70,14 @@ CONFIGDB="--configdb <%= @configdb_server_list %>"
 <% else %>
 REPLSET=<%= @node[:mongodb][:replica_set] %>
 SHARDSVR=<%= @node[:mongodb][:shard_server] %>
+
+<% if @node[:mongodb][:replica_set] && @node[:mongodb][:journal] %>
+JOURNAL=<%= @node[:mongodb][:journal] %>
+<% end %>
+<% if @node[:mongodb][:replica_set] && @node[:mongodb][:fastsync] %>
+FASTSYNC=<%= @node[:mongodb][:fastsync] %>
+<% end %>
+
 <% end %>
 
 <% unless server_type == 'mongos' %>
@@ -107,6 +115,18 @@ if test "x$SHARDSVR" = "xtrue"; then
   SHARDSVR=--shardsvr
 else
   SHARDSVR=
+fi
+
+if test "x$JOURNAL" = "x"; then
+  JOURNAL=
+else
+  JOURNAL=--journal
+fi
+
+if test "x$FASTSYNC" = "x"; then
+  FASTSYNC=
+else
+  FASTSYNC=--fastsync
 fi
 
 . /lib/lsb/init-functions
