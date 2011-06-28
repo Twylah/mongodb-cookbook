@@ -19,7 +19,7 @@ port = <%= @node[:mongodb][:port] %>
 <% end %>
 
 logappend=true
-#bind_ip = <%= @node[:mongodb][:bind_ip] %>
+bind_ip = <%= @node[:mongodb][:bind_ip] %>
 
 <% if @node[:mongodb][:log_cpu_io] %>
 # Enables periodic logging of CPU utilization and I/O wait
